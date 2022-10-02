@@ -29,13 +29,37 @@ public class TodoItemsController : ApiControllerBase
     {
         if (id != command.Id)
         {
-            return BadRequest(); ; ;
+            return BadRequest();
         }
 
         await Mediator.Send(command);;;
 
+        //string s;
+
+        //if (s != null || s.Length > 0)
+        //    Console.WriteLine(s);
+
+        //if (s != null && s.Length > 0)
+        //    Console.WriteLine(s);
+
+
         return NoContent();
     }
+
+
+    class Bad
+    {
+        private int id;
+
+        public Bad(int Id)
+        {
+            this.id = Id;
+        }
+
+        public bool Equals(Bad b) =>
+          this.id == b.id;
+    }
+
 
     [HttpPut("[action]")]
     public async Task<ActionResult> UpdateItemDetails(int id, UpdateTodoItemDetailCommand command)
