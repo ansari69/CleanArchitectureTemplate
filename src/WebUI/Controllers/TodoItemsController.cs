@@ -6,7 +6,6 @@ using CleanArchitecture.Application.TodoItems.Commands.UpdateTodoItemDetail;
 using CleanArchitecture.Application.TodoItems.Queries.GetTodoItemsWithPagination;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using static CleanArchitecture.WebUI.Controllers.BadDynamicCall;
 
 namespace CleanArchitecture.WebUI.Controllers;
 
@@ -33,34 +32,10 @@ public class TodoItemsController : ApiControllerBase
             return BadRequest();
         }
 
-        if (id != command.Id)
-        {
-            return BadRequest();
-        }
-
-        if (id != command.Id)
-        {
-            return BadRequest();
-        }
-
-        if (id != command.Id)
-        {
-            return BadRequest();
-        }
-
-        if (id != command.Id)
-        {
-            return BadRequest();
-        }
-
-        if (id != command.Id)
-        {
-            return BadRequest();
-        }
 
 
 
-        await Mediator.Send(command);;;
+        await Mediator.Send(command);
 
         //string s;
 
@@ -92,84 +67,84 @@ public class TodoItemsController : ApiControllerBase
     public async Task<ActionResult> Delete(int id)
     {
         await Mediator.Send(new DeleteTodoItemCommand(id));
-        await Mediator.Send(new DeleteTodoItemCommand(id));
-        await Mediator.Send(new DeleteTodoItemCommand(id));
-        await Mediator.Send(new DeleteTodoItemCommand(id));
-        await Mediator.Send(new DeleteTodoItemCommand(id));
-        await Mediator.Send(new DeleteTodoItemCommand(id));
-        await Mediator.Send(new DeleteTodoItemCommand(id));
+        //await Mediator.Send(new DeleteTodoItemCommand(id));
+        //await Mediator.Send(new DeleteTodoItemCommand(id));
+        //await Mediator.Send(new DeleteTodoItemCommand(id));
+        //await Mediator.Send(new DeleteTodoItemCommand(id));
+        //await Mediator.Send(new DeleteTodoItemCommand(id));
+        //await Mediator.Send(new DeleteTodoItemCommand(id));
 
-        dynamic o = new WithoutFoo();
-        o.Foo(3);
+        //dynamic o = new WithoutFoo();
+        //o.Foo(3);
 
         return NoContent();
     }
 }
 
-class BadDynamicCall
-{
-   public class WithFoo
-    {
-        public void Foo(int i) { }
-    }
+//class BadDynamicCall
+//{
+//   public class WithFoo
+//    {
+//        public void Foo(int i) { }
+//    }
 
-   public class WithoutFoo { }
+//   public class WithoutFoo { }
 
-    public static void Main(string[] args)
-    {
-        //dynamic o = new WithoutFoo();
-        //o.Foo(3);
-    }
-}
+//    public static void Main(string[] args)
+//    {
+//        //dynamic o = new WithoutFoo();
+//        //o.Foo(3);
+//    }
+//}
 
-class Bad
-{
-    private int id;
+//class Bad
+//{
+//    private int id;
 
-    public Bad(int Id)
-    {
-        this.id = Id;
-    }
+//    public Bad(int Id)
+//    {
+//        this.id = Id;
+//    }
 
-    void M()
-    {
-        GC.Collect();
-    }
+//    void M()
+//    {
+//        GC.Collect();
+//    }
 
-    public bool Equals(Bad b) =>
-      this.id == b.id;
-}
+//    public bool Equals(Bad b) =>
+//      this.id == b.id;
+//}
 
-class BadMultipleIteration
-{
-    private static int count = 1;
+//class BadMultipleIteration
+//{
+//    private static int count = 1;
 
-    private static IEnumerable<int> NonRepeatable()
-    {
-        for (; count <= 3; count++)
-        {
-            yield return count;
-        }
-    }
+//    private static IEnumerable<int> NonRepeatable()
+//    {
+//        for (; count <= 3; count++)
+//        {
+//            yield return count;
+//        }
+//    }
 
-    public static void Main(string[] args)
-    {
-        IEnumerable<int> nr = NonRepeatable();
-        foreach (int i in nr)
-            Console.WriteLine(i);
+//    public static void Main(string[] args)
+//    {
+//        IEnumerable<int> nr = NonRepeatable();
+//        foreach (int i in nr)
+//            Console.WriteLine(i);
 
-        foreach (int i in nr)
-            Console.WriteLine(i);
-    }
-}
+//        foreach (int i in nr)
+//            Console.WriteLine(i);
+//    }
+//}
 
-class ReferenceEqualsOnValueTypes
-{
-    static void Main(string[] args)
-    {
-        int i = 17;
-        int j = 17;
+//class ReferenceEqualsOnValueTypes
+//{
+//    static void Main(string[] args)
+//    {
+//        int i = 17;
+//        int j = 17;
 
-        bool b = ReferenceEquals(i, j );
-    }
-}
+//        bool b = ReferenceEquals(i, j );
+//    }
+//}
