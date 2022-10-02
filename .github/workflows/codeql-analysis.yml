@@ -68,3 +68,14 @@ jobs:
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
+      
+      ID: cs/reference-equality-on-valuetypes
+Kind: problem
+Severity: error
+Precision: high
+Tags:
+   - reliability
+   - correctness
+   - external/cwe/cwe-595
+Query suites:
+   - csharp-security-and-quality.qls

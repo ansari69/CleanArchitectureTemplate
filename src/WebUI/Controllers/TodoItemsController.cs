@@ -131,6 +131,45 @@ class Bad
         this.id = Id;
     }
 
+    void M()
+    {
+        GC.Collect();
+    }
+
     public bool Equals(Bad b) =>
       this.id == b.id;
+}
+
+class BadMultipleIteration
+{
+    private static int count = 1;
+
+    private static IEnumerable<int> NonRepeatable()
+    {
+        for (; count <= 3; count++)
+        {
+            yield return count;
+        }
+    }
+
+    public static void Main(string[] args)
+    {
+        IEnumerable<int> nr = NonRepeatable();
+        foreach (int i in nr)
+            Console.WriteLine(i);
+
+        foreach (int i in nr)
+            Console.WriteLine(i);
+    }
+}
+
+class ReferenceEqualsOnValueTypes
+{
+    static void Main(string[] args)
+    {
+        int i = 17;
+        int j = 17;
+
+        bool b = ReferenceEquals(i, j);
+    }
 }
