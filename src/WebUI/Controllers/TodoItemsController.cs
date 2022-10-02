@@ -47,20 +47,6 @@ public class TodoItemsController : ApiControllerBase
     }
 
 
-    class Bad
-    {
-        private int id;
-
-        public Bad(int Id)
-        {
-            this.id = Id;
-        }
-
-        public bool Equals(Bad b) =>
-          this.id == b.id;
-    }
-
-
     [HttpPut("[action]")]
     public async Task<ActionResult> UpdateItemDetails(int id, UpdateTodoItemDetailCommand command)
     {
@@ -81,4 +67,19 @@ public class TodoItemsController : ApiControllerBase
 
         return NoContent();
     }
+}
+
+
+
+class Bad
+{
+    private int id;
+
+    public Bad(int Id)
+    {
+        this.id = Id;
+    }
+
+    public bool Equals(Bad b) =>
+      this.id == b.id;
 }
