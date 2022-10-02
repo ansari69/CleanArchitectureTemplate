@@ -6,6 +6,7 @@ using CleanArchitecture.Application.TodoItems.Commands.UpdateTodoItemDetail;
 using CleanArchitecture.Application.TodoItems.Queries.GetTodoItemsWithPagination;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using static CleanArchitecture.WebUI.Controllers.BadDynamicCall;
 
 namespace CleanArchitecture.WebUI.Controllers;
 
@@ -98,12 +99,28 @@ public class TodoItemsController : ApiControllerBase
         await Mediator.Send(new DeleteTodoItemCommand(id));
         await Mediator.Send(new DeleteTodoItemCommand(id));
 
+        dynamic o = new WithoutFoo();
+        o.Foo(3);
 
         return NoContent();
     }
 }
 
+class BadDynamicCall
+{
+   public class WithFoo
+    {
+        public void Foo(int i) { }
+    }
 
+   public class WithoutFoo { }
+
+    public static void Main(string[] args)
+    {
+        //dynamic o = new WithoutFoo();
+        //o.Foo(3);
+    }
+}
 
 class Bad
 {
