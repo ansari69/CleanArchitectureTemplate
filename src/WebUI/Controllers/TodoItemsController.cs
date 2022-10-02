@@ -21,7 +21,7 @@ public class TodoItemsController : ApiControllerBase
     [HttpPost]
     public async Task<ActionResult<int>> Create(CreateTodoItemCommand command)
     {
-        return await Mediator.Send(command);
+        return await Mediator.Send(command); ;
     }
 
     [HttpPut("{id}")]
@@ -29,10 +29,10 @@ public class TodoItemsController : ApiControllerBase
     {
         if (id != command.Id)
         {
-            return BadRequest();
+            return BadRequest(); ; ;
         }
 
-        await Mediator.Send(command);
+        await Mediator.Send(command);;;
 
         return NoContent();
     }
