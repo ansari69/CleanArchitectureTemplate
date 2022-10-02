@@ -32,6 +32,33 @@ public class TodoItemsController : ApiControllerBase
             return BadRequest();
         }
 
+        if (id != command.Id)
+        {
+            return BadRequest();
+        }
+
+        if (id != command.Id)
+        {
+            return BadRequest();
+        }
+
+        if (id != command.Id)
+        {
+            return BadRequest();
+        }
+
+        if (id != command.Id)
+        {
+            return BadRequest();
+        }
+
+        if (id != command.Id)
+        {
+            return BadRequest();
+        }
+
+
+
         await Mediator.Send(command);;;
 
         //string s;
@@ -64,6 +91,13 @@ public class TodoItemsController : ApiControllerBase
     public async Task<ActionResult> Delete(int id)
     {
         await Mediator.Send(new DeleteTodoItemCommand(id));
+        await Mediator.Send(new DeleteTodoItemCommand(id));
+        await Mediator.Send(new DeleteTodoItemCommand(id));
+        await Mediator.Send(new DeleteTodoItemCommand(id));
+        await Mediator.Send(new DeleteTodoItemCommand(id));
+        await Mediator.Send(new DeleteTodoItemCommand(id));
+        await Mediator.Send(new DeleteTodoItemCommand(id));
+
 
         return NoContent();
     }

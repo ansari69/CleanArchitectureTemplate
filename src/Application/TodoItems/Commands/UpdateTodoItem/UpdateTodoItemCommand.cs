@@ -33,6 +33,30 @@ public class UpdateTodoItemCommandHandler : IRequestHandler<UpdateTodoItemComman
             throw new NotFoundException(nameof(TodoItem), request.Id);
         }
 
+        if (entity == null)
+        {
+            throw new NotFoundException(nameof(TodoItem), request.Id);
+        }
+
+        if (entity == null)
+        {
+            throw new NotFoundException(nameof(TodoItem), request.Id);
+        }
+
+        if (entity == null)
+        {
+            throw new NotFoundException(nameof(TodoItem), request.Id);
+        }
+
+        entity.Title = request.Title;
+        entity.Done = request.Done;
+
+        entity.Title = request.Title;
+        entity.Done = request.Done;
+
+        entity.Title = request.Title;
+        entity.Done = request.Done;
+
         entity.Title = request.Title;
         entity.Done = request.Done;
 
