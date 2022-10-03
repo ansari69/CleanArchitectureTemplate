@@ -1,0 +1,37 @@
+name: Tests
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    services:
+      sql:
+        image: mcr.microsoft.com/mssql/server
+        ports:
+          - 1433:1433
+        env:
+          SA_PASSWORD: Your_password123
+          ACCEPT_EULA: Y
+          
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    - name: Restore dependencies
+      run: dotnet restore src/VehicleTunerOnline.Web/VehicleTunerOnline.Web.csproj
+    - name: Build
+      run: |
+         dotnet build src/VehicleTunerOnline.Web/VehicleTunerOnline.Web.csproj --no-restore --configuration Release
+    - name: Test
+      run: dotnet test tests/VehicleTunerOnline.Web.IntegrationTest/VehicleTunerOnline.Web.IntegrationTest.csproj --configuration Release
+      env:
+        ConnectionStrings__DefaultConnection: Server=.;Database=CleanArchitectureDb-Test;User=sa;Password=Your_password123;MultipleActiveResultSets=true; 

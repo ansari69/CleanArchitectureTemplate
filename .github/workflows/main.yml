@@ -1,0 +1,26 @@
+name: BuildClient
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 3.1.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: | 
+       dotnet build .\src\VehicleTunerOnline.Updater.Dotnet3\VehicleTunerOnline.Updater.Dotnet3.csproj
+       dotnet build .\src\VehicleTunerOnline.Client.Dotnet3\VehicleTunerOnline.Client.Dotnet3.csproj
+       dotnet build .\src\VehicleTunerOnline.Messenger.Dotnet3\VehicleTunerOnline.Messenger.Dotnet3.csproj

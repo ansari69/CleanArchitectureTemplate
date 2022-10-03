@@ -1,0 +1,55 @@
+name: BuildNet35Client
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.0.5
+      
+    - name: Navigate to Workspace
+      run: cd $GITHUB_WORKSPACE
+      
+    - name: Create Build Directory
+      run: mkdir _build
+      
+    - name: Dir
+      run: dir
+    
+    - name: Restore NuGet packages
+      run: nuget restore VehicleFlasherOnline.sln
+      
+    - name: Build Client
+      working-directory: src/VehicleTunerOnline.Client.Net35
+      run: | 
+       msbuild VehicleTunerOnline.Client.Net35.csproj /p:DeployOnBuild=true /p:Configuration=Release /p:OutputPath="publish\latest" /p:Platform="x86"
+       
+    - name: Build Massenger
+      working-directory: src/VehicleTunerOnline.Massenger.Net35
+      run: | 
+       msbuild VehicleTunerOnline.Massenger.Net35.csproj /p:DeployOnBuild=true /p:Configuration=Release /p:OutputPath="publish\latest" /p:Platform="x86"
+       
+    - name: Build Updater
+      working-directory: src/VehicleFlasherOnline.Updater.Net35
+      run: | 
+       msbuild VehicleFlasherOnline.Updater.Net35.csproj /p:DeployOnBuild=true /p:Configuration=Release /p:OutputPath="publish\latest" /p:Platform="x86"
+       
+    - name: Build SqlGenerator
+      working-directory: src/VehicleTunerOnline.Updater.SqlGenerator
+      run: | 
+       msbuild VehicleTunerOnline.Updater.SqlGenerator.csproj /p:DeployOnBuild=true /p:Configuration=Release /p:OutputPath="publish\latest" /p:Platform="x86"
